@@ -6,9 +6,9 @@ import userRoutes from "./routes/user.routes.js";
 import connectToMongoDB from "./db/connectToMongoDB.js";
 import cookieParser from "cookie-parser";
 import { userInfo } from "os";
+import { app, server } from "./socket/socket.js";
 
-const app = express();
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 5000;
 
 dotenv.config();
 app.use(express.json()); // to parse the incoming requests with JSON payloads (from req.body)
@@ -16,7 +16,7 @@ app.use(cookieParser()); // to get cookie data from browser
 
 app.use("/api/auth", authRoutes);
 
-app.use("/api/message", messageRoutes);
+app.use("/api/messages", messageRoutes);
 
 app.use("/api/users", userRoutes);
 
@@ -24,7 +24,7 @@ app.use("/api/users", userRoutes);
 //   res.send("hello world !");
 // });
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   connectToMongoDB();
   console.log(`server is running on port : ${PORT} !`);
 });
