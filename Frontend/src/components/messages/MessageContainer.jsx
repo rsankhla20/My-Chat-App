@@ -2,6 +2,8 @@ import MessageInput from "./MessageInput";
 import Messages from "./Messages";
 import { TiMessages } from "react-icons/ti";
 
+//2:27
+
 const MessageContainer = () => {
   const ischatSelected = false;
   return (
